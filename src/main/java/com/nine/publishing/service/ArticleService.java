@@ -6,6 +6,6 @@ import com.nine.publishing.domain.Article;
 
 public interface ArticleService {
 
-	Article saveArticle(List<Article> article);
+	List<Article> saveArticle(List<Article> article);
 
 }

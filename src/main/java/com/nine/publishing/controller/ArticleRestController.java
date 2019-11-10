@@ -1,5 +1,6 @@
 package com.nine.publishing.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,8 @@ public class ArticleRestController {
 	@Autowired
 	private ArticleService articleService;
 
-	@PostMapping(value = "/createPerson", consumes = "application/json", produces = "application/json")
-	public Article createArticle(@RequestBody List<Article> article) {
-		return articleService.saveArticle(article);
+	@PostMapping(value = "/articles", consumes = "application/json", produces = "application/json")
+	public List<Article> createArticle(@RequestBody Article article) {
+		return articleService.saveArticle(Arrays.asList(article));
 	}
-
 }

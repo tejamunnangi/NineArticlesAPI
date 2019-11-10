@@ -1,16 +1,20 @@
 package com.nine.publishing.domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
-public class Article implements Serializable {
-	private static final long serialVersionUID = -7937993487047663283L;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Article {
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String title;
 	private LocalDate date;
 	private String body;
-	private List<String> tags;
+	private String tags;
 
 	public Long getId() {
 		return id;
@@ -44,11 +48,11 @@ public class Article implements Serializable {
 		this.body = body;
 	}
 
-	public List<String> getTags() {
+	public String getTags() {
 		return tags;
 	}
 
-	public void setTags(List<String> tags) {
+	public void setTags(String tags) {
 		this.tags = tags;
 	}
 
