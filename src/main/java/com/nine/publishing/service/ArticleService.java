@@ -8,4 +8,6 @@ public interface ArticleService {
 
 	List<Article> saveArticle(List<Article> article);
 
+	Article getArticleById(Long id);
+
 }

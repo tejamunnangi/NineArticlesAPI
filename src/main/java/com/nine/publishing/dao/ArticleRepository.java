@@ -1,4 +1,4 @@
-package com.nine.publishing.service;
+package com.nine.publishing.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

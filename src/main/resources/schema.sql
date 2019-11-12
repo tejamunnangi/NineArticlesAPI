@@ -1,13 +1,17 @@
 CREATE TABLE article (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
+  article_id INT AUTO_INCREMENT  PRIMARY KEY,
   title VARCHAR(250) NOT NULL,
   updated_date DATE  NOT NULL,
   body CLOB DEFAULT NULL
 );
 
 CREATE TABLE tag (
+  tag VARCHAR(250) PRIMARY KEY
+);
+
+CREATE TABLE article_tag (
   article_id INT NOT NULL,
   tag VARCHAR(250) NOT NULL
 );
 
-ALTER TABLE tag ADD PRIMARY KEY (article_id, tag);
+ALTER TABLE article_tag add primary key(article_id, tag)

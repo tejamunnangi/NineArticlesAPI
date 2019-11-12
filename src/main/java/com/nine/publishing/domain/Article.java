@@ -1,13 +1,16 @@
 package com.nine.publishing.domain;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Article {
@@ -20,8 +23,13 @@ public class Article {
 	private LocalDate date;
 	@Column
 	private String body;
-	@OneToMany(mappedBy="article")
-	private List<Tag> tags;
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "article_tag", 
+        joinColumns = { @JoinColumn(name = "article_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "tag") }
+    )
+	Set<Tag> articleTags;
 
 	public Long getId() {
 		return id;
@@ -55,12 +63,12 @@ public class Article {
 		this.body = body;
 	}
 
-	public List<Tag> getTags() {
-		return tags;
+	public Set<Tag> getTags() {
+		return articleTags;
 	}
 
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
+	public void setTags(Set<Tag> tags) {
+		this.articleTags = tags;
 	}
 
 }

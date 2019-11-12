@@ -1,20 +1,33 @@
 package com.nine.publishing.domain;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
-@IdClass(TagId.class)
 public class Tag {
 
 	@Id
-	private Long articleId;
-	
-	@Id
 	private String tag;
 	
-	@ManyToOne
-    private Article article;
+	@ManyToMany(mappedBy = "articleTags")
+	private Set<Article> articles;
+	
+	public Tag(String tag) {
+		this.tag = tag;
+	}
+	
+	public Tag() {
+	}
+	
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
 }
