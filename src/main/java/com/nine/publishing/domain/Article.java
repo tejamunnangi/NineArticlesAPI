@@ -23,7 +23,7 @@ public class Article {
 	private LocalDate date;
 	@Column
 	private String body;
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "article_tag", 
         joinColumns = { @JoinColumn(name = "article_id") }, 

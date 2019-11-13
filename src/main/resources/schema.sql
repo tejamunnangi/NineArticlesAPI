@@ -6,7 +6,8 @@ CREATE TABLE article (
 );
 
 CREATE TABLE tag (
-  tag VARCHAR(250) PRIMARY KEY
+  tag VARCHAR(250) PRIMARY KEY,
+  updated_date DATE NOT NULL
 );
 
 CREATE TABLE article_tag (
@@ -14,4 +15,4 @@ CREATE TABLE article_tag (
   tag VARCHAR(250) NOT NULL
 );
 
-ALTER TABLE article_tag add primary key(article_id, tag)
+ALTER TABLE article_tag add primary key(article_id, tag);
