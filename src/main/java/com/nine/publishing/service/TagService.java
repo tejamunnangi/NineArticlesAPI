@@ -15,6 +15,6 @@ public interface TagService {
 
 	List<Tag> getAllTags();
 
-	List<ArticleTagResponse> getTagInfo(String tagName, LocalDate date);
+	ArticleTagResponse getTagInfo(String tagName, LocalDate date);
 
 }

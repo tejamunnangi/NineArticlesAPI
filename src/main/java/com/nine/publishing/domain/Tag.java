@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Tag {
 
@@ -15,6 +17,7 @@ public class Tag {
 	private String tag;
 	
 	@Column
+	@JsonIgnore
 	private LocalDate updatedDate;
 	
 	@ManyToMany(mappedBy = "articleTags")

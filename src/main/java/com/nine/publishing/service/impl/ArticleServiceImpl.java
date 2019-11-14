@@ -32,5 +32,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepo.findById(id).orElse(new Article());
 	}
 
+	@Override
+	public List<Article> getArticlesByDate(LocalDate date) {
+		List<Article> articleList = articleRepo.findByDate(date);
+		return articleList;
+	}
+
 	
 }

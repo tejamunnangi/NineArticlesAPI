@@ -1,6 +1,7 @@
 package com.nine.publishing.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,8 @@ public class TagRestController {
 	}
 	
 	@GetMapping(value = "/tags/{tagName}/{date}", produces = "application/json")
-	public List<ArticleTagResponse> getTagInfo(@PathVariable("tagName") String tagName, @PathVariable("date") LocalDate date) {
-		return tagService.getTagInfo(tagName, date);
+	public ArticleTagResponse getTagInfo(@PathVariable("tagName") String tagName, @PathVariable("date") String date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		return tagService.getTagInfo(tagName, LocalDate.parse(date, formatter));
 	}
 }
