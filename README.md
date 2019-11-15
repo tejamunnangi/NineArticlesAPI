@@ -18,10 +18,10 @@ https://github.com/tejamunnangi/NineArticlesAPI.git
 
 mvn clean package
 
-3. Execute the below command:
+4. Execute the below command:
 
 java -jar NineArticlesAPI-0.0.1-SNAPSHOT.jar
 
-4. Application runs on an embedded tomcat app server on the port 8080 and can be accessible using the localhost.
+5. Application runs on an embedded tomcat app server on the port 8080 and can be accessible using the localhost.
 
 For example, you can make a post request with a body to save the articles using http://localhost:8080/articles end-point.
