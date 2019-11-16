@@ -23,7 +23,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> saveArticle(List<Article> articles) {
 		for (Article article : articles) {
 			article.setDate(LocalDate.now());
-			tagService.save(article.getTags());
+			if (article.getTags() != null && !article.getTags().isEmpty()) {
+				tagService.save(article.getTags());
+			}
 		}
 		return articleRepo.saveAll(articles);
 	}
