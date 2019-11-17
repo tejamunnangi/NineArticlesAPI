@@ -58,5 +58,5 @@ The premise of this format of testing is innovative and straight forward. Rather
 
 It took me 6 hours over 5 days to finish this assignment from project bootstrap to this documentation.
 
-If I had more time, I would have implemented the input validations, logging, java/api spec documentation and exception handling of the code.
+If I had more time, I would have implemented the input validations, logging, java/api spec documentation, more test coverage and comprehensive test cases and exception handling of the code.
 
