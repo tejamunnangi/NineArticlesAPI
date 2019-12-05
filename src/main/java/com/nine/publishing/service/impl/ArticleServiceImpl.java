@@ -10,6 +10,7 @@ import com.nine.publishing.dao.ArticleRepository;
 import com.nine.publishing.domain.Article;
 import com.nine.publishing.service.ArticleService;
 import com.nine.publishing.service.TagService;
+import com.nine.publishing.service.exception.ArticleInvalidException;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -20,8 +21,11 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private TagService tagService;
 	
-	public List<Article> saveArticle(List<Article> articles) {
+	public List<Article> saveArticle(List<Article> articles) throws ArticleInvalidException {
 		for (Article article : articles) {
+			if (article.getTitle() == null) {
+				throw new ArticleInvalidException("The submitted article is not valid");
+			}
 			article.setDate(LocalDate.now());
 			if (article.getTags() != null && !article.getTags().isEmpty()) {
 				tagService.save(article.getTags());

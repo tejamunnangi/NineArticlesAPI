@@ -10,10 +10,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nine.publishing.Application;
 import com.nine.publishing.domain.Article;
@@ -21,6 +23,9 @@ import com.nine.publishing.domain.Article;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
+@Transactional
+@TestPropertySource(
+		  locations = "classpath:application-test.properties")
 public class ArticleRestControllerTest extends AbstractTest {
 	
 	@Before
@@ -40,7 +45,7 @@ public class ArticleRestControllerTest extends AbstractTest {
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(422, status);
 		String content = mvcResult.getResponse().getContentAsString();
-		assertTrue(content.isEmpty());
+		assertEquals(content, "The submitted article is not valid");
 	}
 	
 	@Test
@@ -59,5 +64,18 @@ public class ArticleRestControllerTest extends AbstractTest {
 		List<Article> articleList = mapFromJson(content, List.class);
 		assertEquals(articleList.size(), 1);
 		assertTrue(articleList.stream().findFirst().get().getTitle().equals("Title"));
+	}
+	
+	@Test
+	public void getArticleByIdTest() throws Exception {
+		String uri = "/articles/1";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+			      .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(200, status);
+		String content = mvcResult.getResponse().getContentAsString();
+		System.out.println(content);
+		assertTrue(content.isEmpty());
 	}
 }
